@@ -1,0 +1,77 @@
+﻿@model DataAccess.Entities.Movie
+    
+@{
+	string message;
+	string color;
+}
+@if (ViewBag.Message != null)
+{
+	message = ViewBag.Message.ToString();
+	color = "success";
+	if (message.EndsWith("!"))
+	{
+		color = "danger";
+	}
+	<p class="text-@color">
+		@message
+	</p>
+}
+@if (TempData["Message"] != null)
+{
+	message = TempData["Message"].ToString();
+	color = "success";
+	if (message.EndsWith("!"))
+	{
+		color = "danger";
+	}
+	<p class="text-@color">
+		@message
+	</p>
+}
+    
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (Model != null)
+{
+    <div>
+        <h4>Movie</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-2">
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+            <dd class="col-10">
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+            <dt class="col-2">
+                @Html.DisplayNameFor(model => model.Year)
+            </dt>
+            <dd class="col-10">
+                @Html.DisplayFor(model => model.Year)
+            </dd>
+            <dt class="col-2">
+                @Html.DisplayNameFor(model => model.Director)
+            </dt>
+            <dd class="col-10">
+                @Html.DisplayFor(model => model.Director.DirectorFirstName)
+            </dd>
+            <dt class="col-2">
+                @Html.DisplayNameFor(model => model.IsActive)
+            </dt>
+            <dd class="col-10">
+                @Html.DisplayFor(model => model.IsActive)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>&nbsp;|&nbsp;
+        <a asp-action="Index">Back to List</a>
+    </div>
+}
+
+
+

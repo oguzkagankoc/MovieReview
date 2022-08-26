@@ -16,11 +16,13 @@ namespace DataAccess.Contexts
         public DbSet<Role> Roles { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Director> Directors { get; set; }
+        public DbSet<Genre> Genres { get; set; }
+        public DbSet<MovieGenre> MovieGenres { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 
         {
-            string connectionString = "server=DESKTOP-BSP44OQ;database=MovieReviewDbv2;Trusted_Connection=True;";
+            string connectionString = "server=DESKTOP-BSP44OQ;database=MovieReviewDb;Trusted_Connection=True;";
 
 
             optionsBuilder.UseSqlServer(connectionString);
@@ -62,5 +64,13 @@ namespace DataAccess.Contexts
                 .OnDelete(DeleteBehavior.NoAction)
                 ;
         }
+        //public MovieContext(DbContextOptions options) : base(options)
+        //{
+
+        //}
+
+        //public MovieContext()
+        //{
+        //}
     }
 }

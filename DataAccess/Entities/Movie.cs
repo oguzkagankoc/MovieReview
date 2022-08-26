@@ -23,4 +23,5 @@ namespace DataAccess.Entities
 
         public List<MovieGenre>? MovieGenres { get; set; }
     }
+ 
 }

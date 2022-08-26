@@ -1,0 +1,112 @@
+﻿@model IEnumerable<DataAccess.Entities.User>
+    
+@{
+	string message;
+	string color;
+}
+@if (ViewBag.Message != null)
+{
+	message = ViewBag.Message.ToString();
+	color = "success";
+	if (message.EndsWith("!"))
+	{
+		color = "danger";
+	}
+	<p class="text-@color">
+		@message
+	</p>
+}
+@if (TempData["Message"] != null)
+{
+	message = TempData["Message"].ToString();
+	color = "success";
+	if (message.EndsWith("!"))
+	{
+		color = "danger";
+	}
+	<p class="text-@color">
+		@message
+	</p>
+}
+    
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (Model != null && Model.Count() > 0)
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <div style="overflow-y: auto; height: 250px; border-style: solid; border-width: 1px;">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        <a href="#" class="orderexpressionlink">
+                            @Html.DisplayNameFor(model => model.UserName)
+                        </a>
+                    </th>
+                    <th>
+                        <a href="#" class="orderexpressionlink">
+                            @Html.DisplayNameFor(model => model.Password)
+                        </a>
+                    </th>
+                    <th>
+                        <a href="#" class="orderexpressionlink">
+                            @Html.DisplayNameFor(model => model.FirstName)
+                        </a>
+                    </th>
+                    <th>
+                        <a href="#" class="orderexpressionlink">
+                            @Html.DisplayNameFor(model => model.LastName)
+                        </a>
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Role)
+                    </th>
+                    <th>
+                        <a href="#" class="orderexpressionlink">
+                            @Html.DisplayNameFor(model => model.IsActive)
+                        </a>
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+		        @foreach (var item in Model)
+                {
+				    <tr>
+					    <td>
+						    @Html.DisplayFor(modelItem => item.UserName)
+					    </td>
+					    <td>
+						    @Html.DisplayFor(modelItem => item.Password)
+					    </td>
+					    <td>
+						    @Html.DisplayFor(modelItem => item.FirstName)
+					    </td>
+					    <td>
+						    @Html.DisplayFor(modelItem => item.LastName)
+					    </td>
+					    <td>
+						    @Html.DisplayFor(modelItem => item.Role.RoleName)
+					    </td>
+					    <td>
+						    @Html.DisplayFor(modelItem => item.IsActive)
+					    </td>
+					    <td>
+						    <a asp-action="Details" asp-route-id="@item.Id">Details</a>&nbsp;|&nbsp;
+						    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>&nbsp;|&nbsp;
+						    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+					    </td>
+				    </tr>
+		        }
+            </tbody>
+        </table>
+    </div>
+}
+
+
